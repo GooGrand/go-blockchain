@@ -6,7 +6,6 @@ import (
 	"github.com//GooGrand/go-blockchain/blockchain"
 )
 
-
 func main() {
 	chain := blockchain.InitBlockChain()
 
