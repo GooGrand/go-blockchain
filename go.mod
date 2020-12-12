@@ -1,5 +1,3 @@
-module github.com/GooGrand/go-blockchain.git
+module github.com/GooGrand/go-blockchain
 
 go 1.13
-
-require rsc.io/quote v1.5.2

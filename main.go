@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 
-	"github.com//GooGrand/go-blockchain/blockchain"
+	"github.com/GooGrand/go-blockchain/blockchain"
 )
 
 func main() {
@@ -13,9 +14,13 @@ func main() {
 	chain.AddBlock("Second Block")
 	chain.AddBlock("Third Block")
 
-	for _, block := range chain.blocks {
+	for _, block := range chain.Blocks {
 		fmt.Printf("Previous Hash: %x\n", block.PrevHash)
 		fmt.Printf("Data in block: %s\n", block.Data)
 		fmt.Printf("Hash: %x\n", block.Hash)
+
+		pow := blockchain.NewProof(block)
+		fmt.Printf("PoW: %s\n", strconv.FormatBool(pow.Validate()))
+		fmt.Println()
 	}
 }
