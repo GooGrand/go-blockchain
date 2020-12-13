@@ -71,13 +71,27 @@ func (cli *CommandLine) run() {
 		cli.printUsage()
 		runtime.Goexit()
 	}
+
+	if addBlockCmd.Parsed() {
+		if *addBlockData == "" {
+			addBlockCmd.Usage()
+			runtime.Goexit()
+		}
+		cli.addBlock(*addBlockData)
+	}
+
+	if printChainCmd.Parsed() {
+		cli.printChain()
+	}
 }
 
 func main() {
+	defer os.Exit(0)
 	chain := blockchain.InitBlockChain()
 
-	chain.AddBlock("First Block")
-	chain.AddBlock("Second Block")
-	chain.AddBlock("Third Block")
+	defer chain.Database.Close()
+
+	cli := CommandLine{chain}
+	cli.run()
 
 }

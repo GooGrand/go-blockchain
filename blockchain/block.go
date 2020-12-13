@@ -1,9 +1,10 @@
 package blockchain
 
 import (
-	"bytes"	"encoding/gob"
+	"bytes"
+	"encoding/gob"
+	"log"
 )
-
 
 type Block struct {
 	Hash     []byte
@@ -39,7 +40,7 @@ func (b *Block) Serialize() []byte {
 }
 
 func Deserialize(data []byte) *Block {
-	var block Block 
+	var block Block
 
 	decoder := gob.NewDecoder(bytes.NewReader(data))
 
